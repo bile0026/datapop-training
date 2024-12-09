@@ -39,6 +39,7 @@ class ImportLocations(Job):
         }
 
         active_status, _ = Status.objects.get_or_create(name="Active")
+        self.csv_file = csv_file
         decoded_csv = self.csv_file.read().decode("utf-8")
         csv_file = csv.DictReader(StringIO(decoded_csv))
 
