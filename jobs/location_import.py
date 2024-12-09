@@ -64,7 +64,7 @@ class ImportLocations(Job):
                 name=state,
                 status=active_status,
                 defaults={
-                    "location_type": LocationType.objects.get(name="State")
+                    "location_type": Location.objects.get(name="State")
                 },
             )
 
@@ -72,7 +72,7 @@ class ImportLocations(Job):
                 name=city,
                 status=active_status,
                 defaults={
-                    "location_type": LocationType.objects.get(name="City")
+                    "location_type": Location.objects.get(name="City")
                 },
             )
 
