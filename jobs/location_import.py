@@ -64,21 +64,23 @@ class ImportLocations(Job):
                 name=state,
                 status=active_status,
                 defaults={
-                    "location_type": Location.objects.get(name="State")
+                    "location_type": LocationType.objects.get(name="State")
                 },
             )
 
             city, _ = LocationType.objects.get_or_create(
                 name=city,
                 status=active_status,
+                parent=state,
                 defaults={
-                    "location_type": Location.objects.get(name="City")
+                    "location_type": LocationType.objects.get(name="City")
                 },
             )
 
             site, created = Location.objects.update_or_create(
                 name=site_name,
                 status=active_status,
+                parent=city,
                 defaults={
                     "location_type": LocationType.objects.get(name=location_type),
                 },
