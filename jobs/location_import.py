@@ -45,10 +45,10 @@ class ImportLocations(Job):
 
         for row in csv_file:
             site_name = row["name"]
-            city = row["city"]
+            city_name = row["city"]
             state_abbr = row["state"]
 
-            state = state_map.get(state_abbr, state_abbr)
+            normalized_state = state_map.get(state_abbr, state_abbr)
 
             if site_name.endswith("-DC"):
                 location_type = "Data Center"
@@ -60,16 +60,18 @@ class ImportLocations(Job):
                 )
                 continue
 
+            self.job.logger.info(f"Creating/Checking state {normalized_state}")
             state, _ = Location.objects.get_or_create(
-                name=state,
+                name=normalized_state,
                 status=active_status,
                 defaults={
                     "location_type": LocationType.objects.get(name="State")
                 },
             )
 
+            self.job.logger.info(f"Creating/Checking city {city_name}")
             city, _ = LocationType.objects.get_or_create(
-                name=city,
+                name=city_name,
                 status=active_status,
                 parent=state,
                 defaults={
@@ -77,6 +79,7 @@ class ImportLocations(Job):
                 },
             )
 
+            self.job.logger.info(f"Creating/Checking site {site_name}")
             site, created = Location.objects.update_or_create(
                 name=site_name,
                 status=active_status,
@@ -87,9 +90,9 @@ class ImportLocations(Job):
             )
 
             if created:
-                self.job.logger(f"Created site: {site_name}")
+                self.job.logger.info(f"Created site: {site_name}")
             else:
-                self.log_info(f"Updated site: {site_name}")
+                self.job.logger.info(f"Updated site: {site_name}")
 
 
 jobs = [ImportLocations]
