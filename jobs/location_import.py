@@ -72,10 +72,10 @@ class ImportLocations(Job):
             )
 
             self.logger.info(f"Creating/Checking city {city_name}")
-            city, _ = LocationType.objects.get_or_create(
+            city, _ = Location.objects.get_or_create(
                 name=city_name,
                 status=active_status,
-                parent=Location.objects.get(name=state),
+                parent=state,
                 defaults={
                     "location_type": LocationType.objects.get(name="City")
                 },
@@ -85,7 +85,7 @@ class ImportLocations(Job):
             site, created = Location.objects.update_or_create(
                 name=site_name,
                 status=active_status,
-                parent=Location.objects.get(name=city),
+                parent=city,
                 defaults={
                     "location_type": LocationType.objects.get(name=location_type),
                 },
