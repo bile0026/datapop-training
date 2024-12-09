@@ -25,7 +25,7 @@ class ImportLocations(Job):
         description="Upload your CSV file containing locations",
     )
 
-    def run(self, data, csv_file, commit):
+    def run(self, data, commit, csv_file):
         state_map = {
             "CO": "Colorado",
             "VA": "Virginia",
