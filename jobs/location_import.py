@@ -1,4 +1,5 @@
 import csv
+import logging
 
 from nautobot.apps.jobs import FileVar, BooleanVar
 from nautobot.core.celery import register_jobs
@@ -7,7 +8,8 @@ from nautobot.dcim.models import Location, LocationType
 from nautobot.extras.models import Status
 from io import StringIO
 
-import csv
+LOGGER = logging.getLogger(__name__)
+name = "Device Onboarding"  # pylint: disable=invalid-name
 
 
 class ImportLocations(Job):
@@ -60,7 +62,7 @@ class ImportLocations(Job):
                 )
                 continue
 
-            self.job.logger.info(f"Creating/Checking state {normalized_state}")
+            self.logger.info(f"Creating/Checking state {normalized_state}")
             state, _ = Location.objects.get_or_create(
                 name=normalized_state,
                 status=active_status,
@@ -69,7 +71,7 @@ class ImportLocations(Job):
                 },
             )
 
-            self.job.logger.info(f"Creating/Checking city {city_name}")
+            self.logger.info(f"Creating/Checking city {city_name}")
             city, _ = LocationType.objects.get_or_create(
                 name=city_name,
                 status=active_status,
@@ -79,7 +81,7 @@ class ImportLocations(Job):
                 },
             )
 
-            self.job.logger.info(f"Creating/Checking site {site_name}")
+            self.logger.info(f"Creating/Checking site {site_name}")
             site, created = Location.objects.update_or_create(
                 name=site_name,
                 status=active_status,
@@ -90,9 +92,9 @@ class ImportLocations(Job):
             )
 
             if created:
-                self.job.logger.info(f"Created site: {site_name}")
+                self.logger.info(f"Created site: {site_name}")
             else:
-                self.job.logger.info(f"Updated site: {site_name}")
+                self.logger.info(f"Updated site: {site_name}")
 
 
 jobs = [ImportLocations]
