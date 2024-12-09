@@ -9,6 +9,7 @@ from io import StringIO
 
 import csv
 
+
 class ImportLocations(Job):
     """Job to import locations from a custom CSV file."""
 
@@ -19,9 +20,9 @@ class ImportLocations(Job):
         enabled = True
 
     csv_file = FileVar(
-      label="CSV File",
-      required=True,
-      description="Upload your CSV file containing locations"
+        label="CSV File",
+        required=True,
+        description="Upload your CSV file containing locations",
     )
 
     def run(self, data, commit):
@@ -30,7 +31,7 @@ class ImportLocations(Job):
             "VA": "Virginia",
             "CA": "California",
             "NJ": "New Jersey",
-            "IL": "Illinois"
+            "IL": "Illinois",
         }
 
         active_status, _ = Status.objects.get_or_create(name="Active")
@@ -49,21 +50,19 @@ class ImportLocations(Job):
             elif site_name.endswith("-BR"):
                 location_type = "Branch"
             else:
-                self.job.logger.error(f"Site name '{site_name}' does not end with '-DC' or '-BR'. Skipping.")
+                self.job.logger.error(
+                    f"Site name '{site_name}' does not end with '-DC' or '-BR'. Skipping."
+                )
                 continue
 
             state, _ = Location.objects.get_or_create(
-              name=state,
-              defaults={
-                "location_type": LocationType.objects.get(name="State")
-              }
+                name=state,
+                defaults={"location_type": LocationType.objects.get(name="State")},
             )
 
             city, _ = LocationType.objects.get_or_create(
-              name=city,
-              defaults={
-                "location_type": LocationType.objects.get(name="City")
-              }
+                name=city,
+                defaults={"location_type": LocationType.objects.get(name="City")},
             )
 
             site, created = Location.objects.update_or_create(
@@ -71,7 +70,7 @@ class ImportLocations(Job):
                 defaults={
                     "status": active_status,
                     "location_type": LocationType.objects.get(name=location_type),
-                }
+                },
             )
 
             if created:
@@ -80,7 +79,5 @@ class ImportLocations(Job):
                 self.log_info(f"Updated site: {site_name}")
 
 
-jobs = [
-    ImportLocations
-]
+jobs = [ImportLocations]
 register_jobs(*jobs)
