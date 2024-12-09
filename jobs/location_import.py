@@ -13,6 +13,10 @@ import csv
 class ImportLocations(Job):
     """Job to import locations from a custom CSV file."""
 
+    def __init__(self, *args, **kwargs):
+        """Initialize SSoTSyncDevices."""
+        super().__init__(*args, **kwargs)
+
     class Meta:
         name = "Import Locations"
         description = "Import locations into Nautobot from a CSV file."
