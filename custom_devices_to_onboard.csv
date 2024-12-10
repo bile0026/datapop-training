@@ -1,0 +1,6 @@
+ip_address_host,location_name,location_parent_name,device_role_name,namespace,device_status_name,interface_status_name,ip_address_status_name,platform_name,secrets_group_name,set_mgmt_only,update_devices_without_primary_ip,port,timeout
+172.18.0.27,"SanDiego-BR",San Diego,router,Global,Active,Active,Active,nokia_srl,"Discovery Credentials",True,False,22,30
+172.18.0.28,"Den-BR",Denver,router,Global,Active,Active,Active,nokia_srl,"Discovery Credentials",True,False,22,30
+172.18.0.29,"Ashburn-BR",Ashburn,router,Global,Active,Active,Active,nokia_srl,"Discovery Credentials",True,False,22,30
+172.18.0.30,"Newark-BR",Newark,spine,Global,Active,Active,Active,nokia_srl,"Discovery Credentials",True,False,22,30
+172.18.0.31,"Chicago-BR",Chicago,spine,Global,Active,Active,Active,nokia_srl,"Discovery Credentials",True,False,22,30
