@@ -1,0 +1,13 @@
+ip_address_host,location_name,location_parent_name,device_role_name,namespace,device_status_name,interface_status_name,ip_address_status_name,platform_name,secrets_group_name,set_mgmt_only,update_devices_without_primary_ip,port,timeout
+172.18.0.10,"Den-DC",Denver,router,Global,Active,Active,Active,cisco_xe,"Discovery Credentials",True,False,22,30
+172.18.0.11,"Den-DC",Denver,router,Global,Active,Active,Active,cisco_xe,"Discovery Credentials",True,False,22,30
+172.18.0.12,"Den-DC",Denver,router,Global,Active,Active,Active,cisco_xe,"Discovery Credentials",True,False,22,30
+172.18.0.13,"Den-DC",Denver,spine,Global,Active,Active,Active,cisco_nxos,"Discovery Credentials",True,False,22,30
+172.18.0.14,"Den-DC",Denver,spine,Global,Active,Active,Active,cisco_nxos,"Discovery Credentials",True,False,22,30
+172.18.0.20,"Ashburn-DC",Ashburn,router,Global,Active,Active,Active,juniper_junos,"Discovery Credentials",True,False,22,30
+172.18.0.21,"Ashburn-DC",Ashburn,router,Global,Active,Active,Active,juniper_junos,"Discovery Credentials",True,False,22,30
+172.18.0.22,"Ashburn-DC",Ashburn,router,Global,Active,Active,Active,juniper_junos,"Discovery Credentials",True,False,22,30
+172.18.0.23,"Ashburn-DC",Ashburn,spine,Global,Active,Active,Active,arista_eos,"Discovery Credentials",True,False,22,30
+172.18.0.24,"Ashburn-DC",Ashburn,spine,Global,Active,Active,Active,arista_eos,"Discovery Credentials",True,False,22,30
+172.18.0.25,"Ashburn-DC",Ashburn,leaf,Global,Active,Active,Active,arista_eos,"Discovery Credentials",True,False,22,30
+172.18.0.26,"Ashburn-DC",Ashburn,leaf,Global,Active,Active,Active,arista_eos,"Discovery Credentials",True,False,22,30
