@@ -29,4 +29,4 @@ sync_devices:
       - command: 'show interface all | as json'
         parser: "none"
         jpath: "interfaces[*][subinterfaces][][].address[?type=='IPv4'].prefix[]"
-        post_processor: "{{ obj | split('/')[1] }}"
+        post_processor: "{{ obj[0] | split('/')[1] }}"
