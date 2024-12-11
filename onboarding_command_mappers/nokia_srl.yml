@@ -31,5 +31,5 @@ sync_devices:
         jpath: >-
           (interfaces[].{name: name, match_ip: address[].prefix|[?contains(@, '{{ obj }}/')]}[?match_ip].match_ip[0] ||
             interfaces[].subinterfaces[].{name: name, match_ip: address[].prefix|[?contains(@, '{{ obj }}/')]}[?match_ip].match_ip[0])[0]
-        post_processor: "{{ obj }}"
+        post_processor: "{{ obj.split('/')[1] }}"
         iterable_type: "int"
