@@ -1,0 +1,14 @@
+Den-DC:
+    csr1:"172.18.0.10,cisco_xe"
+    csr2:"172.18.0.11,cisco_xe"
+    csr3:"172.18.0.12,cisco_xe"
+    nxos-spine1:"172.18.0.13,cisco_nxos"
+    nxos-spine2:"172.18.0.14,cisco_nxos"
+Ashburn-DC:
+    vmx1:"172.18.0.20,juniper_junos"
+    vmx2:"172.18.0.21,juniper_junos"
+    vmx3:"172.18.0.22,juniper_junos"
+    eos-spine1:"172.18.0.23,arista_eos"
+    eos-spine2:"172.18.0.24,arista_eos"
+    eos-leaf1:"172.18.0.25,arista_eos"
+    eos-leaf2:"172.18.0.26,arista_eos"
